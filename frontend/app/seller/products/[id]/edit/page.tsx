@@ -12,7 +12,7 @@ export default function EditProduct() {
 
   const [loading, setLoading] = useState(false)
   const [initLoading, setInitLoading] = useState(true)
-  const [categories, setCategories] = useState<any[]>([])
+  const [categories, setCategories] = useState<Array<{ id: string; name: string }>>([])
   
   const [formData, setFormData] = useState({
     name: '',
@@ -61,7 +61,7 @@ export default function EditProduct() {
           image_url: product.images?.[0] || '',
           is_sold: product.is_sold
         })
-      } catch (e) {
+      } catch {
       } finally {
         setInitLoading(false)
       }
@@ -93,7 +93,7 @@ export default function EditProduct() {
       } else {
         alert('Failed to update product.')
       }
-    } catch (err) {
+    } catch {
       alert('Network error')
     } finally {
       setLoading(false)
@@ -114,7 +114,7 @@ export default function EditProduct() {
       if (res.ok) {
         router.push('/seller/dashboard')
       }
-    } catch (e) {
+    } catch {
       alert('Failed to delete')
     }
   }

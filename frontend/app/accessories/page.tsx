@@ -1,9 +1,10 @@
 import { getProducts } from '@/lib/api'
-import ProductGrid from '@/components/ProductGrid'
+import type { Product } from '@/lib/api'
 import FilterBar from '@/components/FilterBar'
 import { Suspense } from 'react'
 import type { Metadata } from 'next'
 
+export const dynamic = 'force-dynamic'
 export const revalidate = 60
 export const metadata: Metadata = {
   title: 'Accessories — VAULT',
@@ -22,7 +23,7 @@ export default async function AccessoriesPage({
 }: {
   searchParams: { [key: string]: string | undefined }
 }) {
-  let data = { results: [] as any[], count: 0 }
+  let data = { results: [] as Product[], count: 0 }
   try {
     data = await getProducts({
       category: 'accessories',
@@ -99,7 +100,7 @@ export default async function AccessoriesPage({
           gap: '1.5px',
         }}
       >
-        {data.results.map((product: any, i: number) => {
+        {data.results.map((product: Product, i: number) => {
           // First item spans 2 columns for mosaic effect
           const isHero = i === 0 || i === 5
           return (

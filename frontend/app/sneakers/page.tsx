@@ -1,9 +1,11 @@
 import { getProducts } from '@/lib/api'
+import type { Product } from '@/lib/api'
 import ProductGrid from '@/components/ProductGrid'
 import FilterBar from '@/components/FilterBar'
 import { Suspense } from 'react'
 import type { Metadata } from 'next'
 
+export const dynamic = 'force-dynamic'
 export const revalidate = 60
 export const metadata: Metadata = {
   title: 'Sneakers — VAULT',
@@ -15,8 +17,8 @@ export default async function SneakersPage({
 }: {
   searchParams: { [key: string]: string | undefined }
 }) {
-  let data = { results: [] as any[], count: 0 }
-  let featured = { results: [] as any[] }
+  let data = { results: [] as Product[], count: 0 }
+  let featured = { results: [] as Product[] }
   try {
     ;[data, featured] = await Promise.all([
       getProducts({

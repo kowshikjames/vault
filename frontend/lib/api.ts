@@ -46,6 +46,20 @@ export interface OrderPayload {
   items: Array<{ product_id: string; quantity: number }>
 }
 
+async function fetchWithTimeout(url: string, options: RequestInit & { timeout?: number } = {}) {
+  const { timeout = 8000, ...rest } = options
+  const controller = new AbortController()
+  const id = setTimeout(() => controller.abort(), timeout)
+  try {
+    const response = await fetch(url, { ...rest, signal: controller.signal })
+    clearTimeout(id)
+    return response
+  } catch (error) {
+    clearTimeout(id)
+    throw error
+  }
+}
+
 export async function getProducts(opts?: {
   category?: string
   search?: string
@@ -60,7 +74,7 @@ export async function getProducts(opts?: {
   if (opts?.condition) params.set('condition', opts.condition)
   if (opts?.is_featured) params.set('is_featured', 'true')
 
-  const res = await fetch(`${API}/api/products/?${params}`, {
+  const res = await fetchWithTimeout(`${API}/api/products/?${params}`, {
     next: { revalidate: 60 },
   })
   if (!res.ok) throw new Error('Failed to fetch products')
@@ -68,7 +82,7 @@ export async function getProducts(opts?: {
 }
 
 export async function getProduct(slug: string): Promise<Product> {
-  const res = await fetch(`${API}/api/products/${slug}/`, {
+  const res = await fetchWithTimeout(`${API}/api/products/${slug}/`, {
     next: { revalidate: 60 },
   })
   if (!res.ok) throw new Error('Product not found')
@@ -76,7 +90,7 @@ export async function getProduct(slug: string): Promise<Product> {
 }
 
 export async function getCategories(): Promise<Category[]> {
-  const res = await fetch(`${API}/api/categories/`, {
+  const res = await fetchWithTimeout(`${API}/api/categories/`, {
     next: { revalidate: 3600 },
   })
   if (!res.ok) throw new Error('Failed to fetch categories')
@@ -85,7 +99,7 @@ export async function getCategories(): Promise<Category[]> {
 }
 
 export async function createOrder(payload: OrderPayload, token: string) {
-  const res = await fetch(`${API}/api/orders/`, {
+  const res = await fetchWithTimeout(`${API}/api/orders/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

@@ -8,7 +8,7 @@ import Link from 'next/link'
 export default function AddProduct() {
   const router = useRouter()
   const [loading, setLoading] = useState(false)
-  const [categories, setCategories] = useState<any[]>([])
+  const [categories, setCategories] = useState<Array<{ id: string; name: string }>>([])
   
   const [formData, setFormData] = useState({
     name: '',
@@ -30,7 +30,7 @@ export default function AddProduct() {
         if (data.results && data.results.length > 0) {
           setFormData(f => ({ ...f, category: data.results[0].id }))
         }
-      } catch (e) {}
+      } catch {}
     }
     fetchCategories()
   }, [])
@@ -62,9 +62,9 @@ export default function AddProduct() {
         .getPublicUrl(filePath)
 
       setImages(prev => [...prev, publicUrl])
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error(err)
-      alert('Upload failed: ' + (err.message || 'Check if "vault-media" bucket exists in Supabase Storage'))
+      alert('Upload failed: ' + ((err as Error).message || 'Check if "vault-media" bucket exists in Supabase Storage'))
     } finally {
       setUploading(false)
     }
@@ -101,7 +101,7 @@ export default function AddProduct() {
         console.error(errData)
         alert('Failed to add product: ' + JSON.stringify(errData))
       }
-    } catch (err) {
+    } catch {
       alert('Network error')
     } finally {
       setLoading(false)
@@ -159,7 +159,7 @@ export default function AddProduct() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))', gap: 12, marginBottom: 12 }}>
             {images.map((url, i) => (
               <div key={i} style={{ aspectRatio: '1', position: 'relative', background: 'var(--warm-100)' }}>
-                <img src={url} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                <img src={url} alt={`Product image ${i + 1}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 <button 
                   type="button"
                   onClick={() => setImages(prev => prev.filter((_, idx) => idx !== i))}

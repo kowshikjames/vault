@@ -26,7 +26,7 @@ export default function SellerOnboarding() {
         if (res.ok) {
           router.push('/seller/dashboard')
         }
-      } catch (e) {}
+      } catch {}
     }
     checkProfile()
   }, [router])
@@ -61,7 +61,7 @@ export default function SellerOnboarding() {
         const data = await res.json()
         setError(JSON.stringify(data))
       }
-    } catch (err) {
+    } catch {
       setError('Something went wrong')
     } finally {
       setLoading(false)

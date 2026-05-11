@@ -7,8 +7,8 @@ import Link from 'next/link'
 
 export default function SellerDashboard() {
   const router = useRouter()
-  const [profile, setProfile] = useState<any>(null)
-  const [products, setProducts] = useState<any[]>([])
+  const [profile, setProfile] = useState<{ store_name: string; instagram_handle: string } | null>(null)
+  const [products, setProducts] = useState<Array<{ id: string; name: string; price: string; condition: string; size: string; images: string[]; is_sold: boolean }>>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -65,7 +65,7 @@ export default function SellerDashboard() {
       <div style={{ display: 'grid', gap: '1px', background: 'var(--border)' }}>
         {products.length === 0 ? (
           <div style={{ background: 'var(--white)', padding: '60px 24px', textAlign: 'center' }}>
-            <p style={{ color: 'var(--ink-60)', marginBottom: 16 }}>You haven't added any listings yet.</p>
+            <p style={{ color: 'var(--ink-60)', marginBottom: 16 }}>You haven&apos;t added any listings yet.</p>
             <Link href="/seller/products/new" className="btn-secondary">Upload First Item</Link>
           </div>
         ) : (
@@ -73,7 +73,7 @@ export default function SellerDashboard() {
             <div key={p.id} style={{ background: 'var(--white)', padding: 24, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <div style={{ display: 'flex', gap: 24, alignItems: 'center' }}>
                 <div style={{ width: 60, height: 60, background: 'var(--warm-100)' }}>
-                  {p.images && p.images[0] && <img src={p.images[0]} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />}
+                  {p.images && p.images[0] && <img src={p.images[0]} alt={p.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />}
                 </div>
                 <div>
                   <h3 style={{ fontWeight: 600, fontSize: 16 }}>{p.name}</h3>

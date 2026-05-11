@@ -1,5 +1,7 @@
-import { getProduct, getProducts } from '@/lib/api'
+import { getProduct } from '@/lib/api'
+import type { Product } from '@/lib/api'
 import BuyButton from '@/components/BuyButton'
+import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 
@@ -22,7 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function ProductDetailPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  let product: any
+  let product: Product | undefined
   try {
     product = await getProduct(slug)
   } catch {
@@ -39,11 +41,11 @@ export default async function ProductDetailPage({ params }: { params: Promise<{ 
     <div style={{ maxWidth: 1440, margin: '0 auto', padding: '2rem' }}>
       {/* Breadcrumb */}
       <p className="label-caps" style={{ color: 'var(--outline)', marginBottom: 24, fontSize: 10 }}>
-        <a href="/" style={{ color: 'var(--outline)', textDecoration: 'none' }}>Home</a>
+        <Link href="/" style={{ color: 'var(--outline)', textDecoration: 'none' }}>Home</Link>
         {' / '}
-        <a href={`/${product.category_slug}`} style={{ color: 'var(--outline)', textDecoration: 'none' }}>
+        <Link href={`/${product.category_slug}`} style={{ color: 'var(--outline)', textDecoration: 'none' }}>
           {product.category?.name}
-        </a>
+        </Link>
         {' / '}
         <span style={{ color: 'var(--on-surface-variant)' }}>{product.name}</span>
       </p>

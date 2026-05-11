@@ -3,11 +3,12 @@ import ProductGrid from '@/components/ProductGrid'
 import CategoryGrid from '@/components/CategoryGrid'
 import Link from 'next/link'
 
+export const dynamic = 'force-dynamic'
 export const revalidate = 60
 
 export default async function HomePage() {
-  let featured = { results: [] as any[] }
-  let newArrivals = { results: [] as any[] }
+  let featured = { results: [] as import('@/lib/api').Product[] }
+  let newArrivals = { results: [] as import('@/lib/api').Product[] }
 
   try {
     [featured, newArrivals] = await Promise.all([

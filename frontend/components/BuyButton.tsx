@@ -33,7 +33,7 @@ export default function BuyButton({ product }: Props) {
         DM Seller (@{sellerHandle}) to Buy
       </a>
       <p style={{ textAlign: 'center', color: 'var(--ink-40)', fontSize: 11, marginTop: 8 }}>
-        You will be redirected to the seller's Instagram to complete the purchase securely.
+        You will be redirected to the seller&apos;s Instagram to complete the purchase securely.
       </p>
     </div>
   )

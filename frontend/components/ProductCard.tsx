@@ -1,5 +1,6 @@
 'use client'
 import Link from 'next/link'
+import Image from 'next/image'
 import type { Product } from '@/lib/api'
 
 interface Props {
@@ -22,14 +23,13 @@ export default function ProductCard({ product }: Props) {
     >
       <div style={{ position: 'relative', overflow: 'hidden', aspectRatio: '3/4', background: 'var(--warm-100)' }}>
         {/* Primary Image */}
-        <img
-          src={primaryImage}
+        <Image
+          src={product.images?.[0] || `https://placehold.co/600x800/221f19/e9e1d7?text=${encodeURIComponent(product.name)}`}
           alt={product.name}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          style={{ objectFit: 'cover' }}
           className="product-img"
-          style={{ position: 'absolute', inset: 0, transition: 'transform 0.4s ease' }}
-          onError={(e) => {
-            (e.target as HTMLImageElement).src = `https://placehold.co/400x533/221f19/e9e1d7?text=${encodeURIComponent(product.name)}`
-          }}
         />
 
         {/* SOLD Overlay Dim */}

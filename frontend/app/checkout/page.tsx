@@ -4,6 +4,7 @@ import { useCart } from '@/lib/store'
 import { createOrder } from '@/lib/api'
 import { supabase } from '@/lib/supabase'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 
 export default function CheckoutPage() {
   const { items, total, clearCart } = useCart()
@@ -58,7 +59,7 @@ export default function CheckoutPage() {
     return (
       <div style={{ minHeight: '70vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
         <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 900, fontSize: 28, marginBottom: 16 }}>Nothing to checkout</p>
-        <a href="/" className="btn-primary">Go Shopping</a>
+        <Link href="/" className="btn-primary">Go Shopping</Link>
       </div>
     )
   }

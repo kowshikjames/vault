@@ -9,7 +9,7 @@ interface FilterBarProps {
 
 const CONDITIONS = ['mint', 'good', 'fair'] as const
 
-export default function FilterBar({ showCondition = true, showBrand = false }: FilterBarProps) {
+export default function FilterBar({ showCondition = true }: FilterBarProps) {
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()

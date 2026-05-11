@@ -1,7 +1,9 @@
 import { getProducts } from '@/lib/api'
+import type { Product } from '@/lib/api'
 import ProductGrid from '@/components/ProductGrid'
 import type { Metadata } from 'next'
 
+export const dynamic = 'force-dynamic'
 export const revalidate = 60
 export const metadata: Metadata = {
   title: 'New Arrivals — VAULT',
@@ -9,7 +11,7 @@ export const metadata: Metadata = {
 }
 
 export default async function NewArrivalsPage() {
-  let data = { results: [] as any[], count: 0 }
+  let data = { results: [] as Product[], count: 0 }
   try {
     data = await getProducts({})
   } catch {}

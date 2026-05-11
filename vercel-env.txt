@@ -1,0 +1,12 @@
+NEXT_PUBLIC_API_URL=/_/backend
+NEXT_PUBLIC_SUPABASE_URL=https://cptxhlvicfnbcxmpjasw.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNwdHhobHZpY2ZuYmN4bXBqYXN3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzgzOTM1NzgsImV4cCI6MjA5Mzk2OTU3OH0.84EmzNg_mq7wii5hvEyygivBbB8rJyt2QiWxLvn8ieY
+SECRET_KEY=django-insecure-change-this-in-production-use-a-long-random-string
+DEBUG=False
+ALLOWED_HOSTS=*
+DB_HOST=aws-1-ap-south-1.pooler.supabase.com
+DB_PORT=6543
+DB_USER=postgres.cptxhlvicfnbcxmpjasw
+DB_PASSWORD=vVXdO6jeACfgAwyd
+SUPABASE_SERVICE_KEY=+MBBVAQhLslPQ49brgDbVdllXkrV9LFWc2S/B1/L2XQW4Th0Z1ExfsrZv3wibbwsHTZYSJ48NEgaE0E1Efq5XQ==
+SUPABASE_JWT_PUBLIC_KEY="-----BEGIN PUBLIC KEY-----\nMFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEX4XQIrhYRJldh+tMcbo3Qr6VS6Z/\nd8EWkI0aXIsKLCUrsI5HDRvOw9H03qvGJ340u0dRgqKbFw1Pt3qqDSbYiQ==\n-----END PUBLIC KEY-----"
