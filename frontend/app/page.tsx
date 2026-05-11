@@ -14,7 +14,8 @@ export default async function HomePage() {
       getProducts({ is_featured: true }),
       getProducts({}),
     ])
-  } catch {
+  } catch (err) {
+    console.error('Data fetching failed:', err)
     // API not connected yet — show placeholder UI
   }
 
