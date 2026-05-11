@@ -1,4 +1,5 @@
-const API = process.env.NEXT_PUBLIC_API_URL
+const API = process.env.NEXT_PUBLIC_API_URL || '/_/backend'
+console.log('VAULT API Initialized:', API)
 
 export interface Product {
   id: string
@@ -64,6 +65,7 @@ async function fetchWithTimeout(url: string, options: RequestInit & { timeout?: 
     return response
   } catch (error) {
     clearTimeout(id)
+    console.error(`Fetch failed: ${url}`, error)
     throw error
   }
 }
