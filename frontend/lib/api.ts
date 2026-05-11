@@ -16,6 +16,12 @@ export interface Product {
   tags: string[]
   in_stock: boolean
   is_featured: boolean
+  seller?: {
+    id: string
+    store_name: string
+    instagram_handle?: string
+    is_verified: boolean
+  }
   created_at: string
 }
 
