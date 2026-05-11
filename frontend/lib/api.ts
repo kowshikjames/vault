@@ -1,4 +1,4 @@
-const API = process.env.NEXT_PUBLIC_API_URL || '/_/backend'
+const API = process.env.NEXT_PUBLIC_API_URL || '/api'
 console.log('VAULT API Initialized:', API)
 
 export interface Product {
