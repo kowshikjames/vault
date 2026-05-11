@@ -47,7 +47,15 @@ export interface OrderPayload {
 }
 
 async function fetchWithTimeout(url: string, options: RequestInit & { timeout?: number } = {}) {
-  const { timeout = 8000, ...rest } = options
+  // During Vercel build, skip fetches to prevent hanging the build
+  if (process.env.VERCEL === '1' && !process.env.NEXT_RUNTIME && typeof window === 'undefined') {
+    return new Response(JSON.stringify({ results: [], count: 0 }), { 
+      status: 200,
+      headers: { 'Content-Type': 'application/json' }
+    })
+  }
+
+  const { timeout = 5000, ...rest } = options
   const controller = new AbortController()
   const id = setTimeout(() => controller.abort(), timeout)
   try {
