@@ -75,7 +75,7 @@ export async function getProducts(opts?: {
   if (opts?.is_featured) params.set('is_featured', 'true')
 
   const res = await fetchWithTimeout(`${API}/api/products/?${params}`, {
-    next: { revalidate: 60 },
+    cache: 'no-store',
   })
   if (!res.ok) throw new Error('Failed to fetch products')
   return res.json()
@@ -83,7 +83,7 @@ export async function getProducts(opts?: {
 
 export async function getProduct(slug: string): Promise<Product> {
   const res = await fetchWithTimeout(`${API}/api/products/${slug}/`, {
-    next: { revalidate: 60 },
+    cache: 'no-store',
   })
   if (!res.ok) throw new Error('Product not found')
   return res.json()
@@ -91,7 +91,7 @@ export async function getProduct(slug: string): Promise<Product> {
 
 export async function getCategories(): Promise<Category[]> {
   const res = await fetchWithTimeout(`${API}/api/categories/`, {
-    next: { revalidate: 3600 },
+    cache: 'no-store',
   })
   if (!res.ok) throw new Error('Failed to fetch categories')
   const data = await res.json()

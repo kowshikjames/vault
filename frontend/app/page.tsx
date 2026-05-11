@@ -4,7 +4,6 @@ import CategoryGrid from '@/components/CategoryGrid'
 import Link from 'next/link'
 
 export const dynamic = 'force-dynamic'
-export const revalidate = 60
 
 export default async function HomePage() {
   let featured = { results: [] as import('@/lib/api').Product[] }

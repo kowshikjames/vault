@@ -6,7 +6,6 @@ import { Suspense } from 'react'
 import type { Metadata } from 'next'
 
 export const dynamic = 'force-dynamic'
-export const revalidate = 60
 export const metadata: Metadata = {
   title: 'Sneakers — VAULT',
   description: 'Rare deadstock and limited-edition sneakers. Size selectors, brand filters, and raffle drops.',

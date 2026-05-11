@@ -6,7 +6,6 @@ import { Suspense } from 'react'
 import type { Metadata } from 'next'
 
 export const dynamic = 'force-dynamic'
-export const revalidate = 60
 export const metadata: Metadata = {
   title: 'Thrift Finds — VAULT',
   description: 'Pre-loved, curated thrift clothing. Mint, Good, and Fair condition pieces sourced with care.',

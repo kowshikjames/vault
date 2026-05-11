@@ -4,7 +4,6 @@ import ProductGrid from '@/components/ProductGrid'
 import type { Metadata } from 'next'
 
 export const dynamic = 'force-dynamic'
-export const revalidate = 60
 export const metadata: Metadata = {
   title: 'New Arrivals — VAULT',
   description: 'Freshest drops from VAULT. New pieces added weekly — thrift, sneakers, and accessories.',
