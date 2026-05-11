@@ -15,6 +15,7 @@ export interface Product {
   images: string[]
   tags: string[]
   in_stock: boolean
+  is_sold: boolean
   is_featured: boolean
   seller?: {
     id: string
