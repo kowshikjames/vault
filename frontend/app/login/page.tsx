@@ -102,7 +102,7 @@ function LoginContent() {
           <div className="divider" style={{ margin: '24px 0' }} />
 
           <p style={{ textAlign: 'center', color: 'var(--on-surface-variant)', fontSize: 13 }}>
-            Don't have an account?{' '}
+            Don&apos;t have an account?{' '}
             <Link href="/register" style={{ color: 'var(--primary)', textDecoration: 'none' }}>
               Create one
             </Link>

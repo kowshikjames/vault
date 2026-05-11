@@ -36,7 +36,7 @@ export default function RegisterPage() {
             Check your email
           </p>
           <p style={{ color: 'var(--on-surface-variant)', marginBottom: 32, fontSize: 14, lineHeight: 1.7 }}>
-            We've sent a confirmation link to <span style={{ color: 'var(--primary)' }}>{email}</span>.
+            We&apos;ve sent a confirmation link to <span style={{ color: 'var(--primary)' }}>{email}</span>.
             Click it to activate your account and start shopping.
           </p>
           <Link href="/login" className="btn-primary">Go to Login</Link>
